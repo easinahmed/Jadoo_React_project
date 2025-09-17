@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home";
-import Destination from "./pages/Destination";
-// import Destination from "./pages/Destination";
+import Error404Page from "./pages/error";
+
 
 const router = createBrowserRouter([
   {
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     Component: MainLayout,
     children: [
       { index: true, Component: Home},
-      
+      {path: "*", Component:Error404Page}
 
 
     ]

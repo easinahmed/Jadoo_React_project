@@ -6,7 +6,10 @@ import Play from "../assets/play.svg"
 const bgStyle = {
     background: `url(${bg_shape})`,
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "right top"
+    backgroundPosition: "right top",
+    
+    
+    
 }
 
 const Banner = () => {
@@ -38,8 +41,10 @@ const Banner = () => {
                             </div>
                         </div>
 
-                        <div className="banner_image">
-                            <img src={traveller} style={bgStyle}  alt="traveller" />
+                        <div className="banner_image relative">
+                            <img src={traveller} style={bgStyle} className="z-[1] relative"  alt="traveller" />
+                            <img className="absolute top-[10%]"  src="plane.svg" alt="image" />
+                            <img className="absolute top-[15%] -right-[10%] -z-[0]" src="plane.svg" alt="image" />
 
                         </div>
 

@@ -16,6 +16,9 @@
   body {
     background: #ffffff ;
   }
+  *{
+    box-sizing: border-box;
+  }
 }
 
 @theme {
@@ -46,20 +49,25 @@
   --shadow-2: 0px 15px 30px rgba(223, 105, 81, 0.304) ;
   --shadow-3: 0px 2px 10px #0000001f ;
   --shadow-serviceCard: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+  --shadow-destinationCard: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+ --shadow-testimonialCard: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+ --shadow-companyCard: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+
+
+
 }
 
 @layer utilities {
   .after-shape::after {
-   
     content: "";
     position: absolute;
     width: 100px;
     height: 100px;
     background: url(rectangle.svg);
-    top: 100%;      /* Card er niche chole asbe */
-    left: 0%;          /* Center e thakbe */
+    top: 100%;      
+    left: 0%;      
     transform: translate(-50%,-60%);
-    z-index: -1;
+    z-index: 0;
   }
 
   .after-decor::after{
@@ -74,4 +82,11 @@
 
     
   }
+
+  .custom-gradient-bg {
+  background: linear-gradient(201.65deg, #747DEF 10.27%, #5E3BE1 100%);
 }
+
+
+}
+

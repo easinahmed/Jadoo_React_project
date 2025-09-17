@@ -4,7 +4,8 @@ const Service = () => {
     return (
         <section className="service mt-[105px] text-center">
             <div className="container">
-                <div className="service_container">
+                <div className="service_container relative">
+                    <img className="absolute left-[100%]" src="dotted.svg" alt="dot image" />
                     <h3 className="text-[18px] text-paragraph">CATEGORY</h3>
                     <h1 className="text-[50px] font-bold font-Volkhob mt-2.5 mb-[66px]">We Offer Best Services</h1>
                     <div className="flex justify-between">
@@ -36,7 +37,7 @@ const Service = () => {
                         </div>
 
 
-                        <div className="service_card after-shape flex  relative  cursor-pointer hover:shadow-serviceCard transition-all ease-linear duration-150 hover:scale-110  rounded-[36px] flex-col p-[40px] items-center">
+                        <div className="service_card relative after-shape flex    cursor-pointer hover:shadow-serviceCard transition-all ease-linear duration-150 hover:scale-110  rounded-[36px] flex-col p-[40px] items-center">
                             <div className="service_image mb-7">
                                 <img src="Customization.svg" alt="image" />
                             </div>
