@@ -58,17 +58,7 @@
 }
 
 @layer utilities {
-  .after-shape::after {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: url(rectangle.svg);
-    top: 100%;      
-    left: 0%;      
-    transform: translate(-50%,-60%);
-    z-index: 0;
-  }
+
 
   .after-decor::after{
     content: "";

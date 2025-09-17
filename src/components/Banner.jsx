@@ -1,4 +1,4 @@
-import bg_shape from "../assets/hero-bg.svg"
+import bg_shape from "../assets/hero-bg.png"
 import traveller from "../assets/traveller.png"
 import Button from "./Button"
 import Play from "../assets/play.svg"
@@ -6,16 +6,13 @@ import Play from "../assets/play.svg"
 const bgStyle = {
     background: `url(${bg_shape})`,
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "right top",
-    
-    
-    
+    backgroundPosition: "right top"
 }
 
 const Banner = () => {
     return (
 
-        <section style={bgStyle} >
+        <section className="" style={bgStyle} >
 
             <div className="blur-[150px] bg-blur w-[470px] h-[470px] rounded-full absolute -left-[25%] top-[20px]"></div>
 
@@ -42,7 +39,7 @@ const Banner = () => {
                         </div>
 
                         <div className="banner_image relative">
-                            <img src={traveller} style={bgStyle} className="z-[1] relative"  alt="traveller" />
+                            <img src={traveller} className="z-[1] relative"  alt="traveller" />
                             <img className="absolute top-[10%]"  src="plane.svg" alt="image" />
                             <img className="absolute top-[15%] -right-[10%] -z-[0]" src="plane.svg" alt="image" />
 
