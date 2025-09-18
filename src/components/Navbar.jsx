@@ -1,9 +1,30 @@
 import { Link } from "react-router";
+import { useRef } from "react";
+
+
+
 
 const Navbar = () => {
+  
+  const navbar =useRef(null);
+ 
+  
+   window.addEventListener("scroll", () => {
+    const value = window.scrollY;
+    if (value > 112){
+      navbar.current.classList.add("bg-white","shadow-lg", "transition-all", "duration-500", "py-4");
+      navbar.current.classList.remove("bg-transparent");
+      navbar.current.classList.remove("py-12");
+    } else{
+      navbar.current.classList.remove("bg-white","shadow-lg");
+      navbar.current.classList.add("bg-transparent");
+      navbar.current.classList.add("py-12");
+    }
+    
+   })
   return (
-    <nav className="fixed w-full ">
-    <div className="navbar py-12 container">
+    <nav className="fixed w-full py-12 z-10" ref={navbar}>
+    <div className="navbar  container">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
