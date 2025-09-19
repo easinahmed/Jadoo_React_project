@@ -42,18 +42,21 @@ const Footer = () => {
                 <div className=" cursor-pointer rounded-full w-[41px] h-[41px] shadow-3 flex items-center justify-center"> <img src="twit.svg" alt="icon" /> </div>
 
               </div>
-            <div >
-              <h4 className="text-[20px] font-medium text-paragraph mt-[26px]"> Discover Our New App</h4>
-             <div className="flex gap-4 mt-4">
-               <img className="cursor-pointer" src="Play Store.png" alt="icon" />
-              <img  className="cursor-pointer" src="Google Play.png" alt="icon" />
-             </div>
+              <div >
+                <h4 className="text-[20px] font-medium text-paragraph mt-[26px]"> Discover Our New App</h4>
+                <div className="flex gap-4 mt-4">
+                  <img className="cursor-pointer" src="Play Store.png" alt="icon" />
+                  <img className="cursor-pointer" src="Google Play.png" alt="icon" />
+                </div>
+
+              </div>
 
             </div>
 
-            </div>
+
 
           </div>
+            <p className="font-poppins text-[14px] text-paragraph mt-[44px] mb-[80px] text-center">All rights reserved@jadoo.co</p>
         </div>
       </footer>
     </>
