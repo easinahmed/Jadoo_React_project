@@ -2,9 +2,9 @@
 
 const DestinationCard = ({ destination }) => {
     return (
-        <div className="destination_card">
-            {/* Card 1 */}
-            <div className="destination_card cursor-pointer h-[457px] hover:scale-110 overflow-hidden shadow-destinationCard transition-all ease-linear duration-200 rounded-[36px] flex flex-col">
+        <div className="destination_card ">
+           
+            <div className="destination_card bg-white cursor-pointer h-[457px] hover:scale-110 overflow-hidden shadow-destinationCard transition-all ease-linear duration-200 rounded-[36px] flex flex-col">
                 <div className="destination_image h-[320px] overflow-hidden mb-7">
                     <img className="w-full h-full object-cover" src={destination.image} alt={destination.name} />
                 </div>

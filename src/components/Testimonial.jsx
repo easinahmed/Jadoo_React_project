@@ -1,3 +1,4 @@
+import SectionHeading from "./SectionHeading"
 
 
 const Testimonial = () => {
@@ -6,11 +7,10 @@ const Testimonial = () => {
     <section className="mt-[200px]">
         <div className="container">
             <div className="testimonial_container">
-                <h3 className="text-[18px] font-semibold font-poppins text-paragraph">TESTIMONIAL</h3>
                 <div className="grid grid-cols-2 gap-[87px]">
-                    <div className="text text-left">
-                   <h1 className="text-[50px] font-bold font-Volkhob mt-2 max-w-[409px] mb-[80px]">What People Say About Us</h1>
-                   <div className="dot">
+                    <div className="text text-left max-w-[409px]">
+                        <SectionHeading heading={"What People Say About Us"} subHeading={"TESTIMONIAL"} headinAlign={"left"} />
+                   <div className="dot mt-[36px]">
                     <img src="dot.svg" alt="dot" />
                    </div>
 

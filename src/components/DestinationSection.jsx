@@ -30,8 +30,8 @@ const destinationData = [
 const DestinationSection = () => {
   return (
     <section className="mt-[123px] text-center">
-        <div className="container relative">
-            <img className="absolute left-[90%] top-[50%] -translate-y-[20%] -z-[0]" src="Decore-destination.svg" alt="" />
+        <div className="container relative z-[1]">
+            <img className="absolute left-[96%] top-[48%] -translate-y-[20%] -z-[1]" src="Decore-destination.svg" alt="" />
             <SectionHeading heading={"Top Selling Destinations"} subHeading={"Top Selling"} />
             <div className="grid grid-cols-3 justify-between gap-15 mt-[60px]">
                 {destinationData?.map( destination => <DestinationCard key={destination.id} destination={destination} />)}

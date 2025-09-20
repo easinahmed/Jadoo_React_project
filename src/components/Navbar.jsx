@@ -84,8 +84,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end ml-[60px] gap-[30px]">
-        <Link to={"/login"} className="btn font-medium text-[17px] bg-transparent border-[1px] border-transparent hover:border hover:rounded-[5px] py-[9px] px-[21px] hover:border-black">Login</Link>
-        <Link to={"/signup"} className="btn font-medium text-[17px] bg-transparent border-[1px] border-transparent hover:border hover:rounded-[5px] py-[9px] px-[21px] hover:border-black">Sign up</Link>
+        <Link to={"/login"} className="btn font-medium text-[17px] bg-transparent border-[1px] border-transparent hover:border  hover:rounded-[5px] py-[9px] px-[21px] hover:border-black">Login</Link>
+        <Link to={"/signup"} className="btn font-medium text-[17px] bg-transparent border-[1px] border-transparent hover:border  hover:rounded-[5px] py-[9px] px-[21px] hover:border-black">Sign up</Link>
         <select defaultValue="Server location" className="bg-transparent cursor-pointer select select-neutral w-16 border-0">
         <option>EN</option>
         <option>BN</option>

@@ -17,4 +17,11 @@ import destination_1 from "../assets/rome.jpg"
 import destination_2 from "../assets/london.jpg"
 import destination_3 from "../assets/europe.jpg"
 
-export { service_icon_1, service_icon_2, service_icon_3, service_icon_4, company_1, company_2, company_3, company_4, company_5, destination_1, destination_2, destination_3 }
+
+// Steps Icons
+import step_icon_1 from "../assets/selection-1.svg"
+import step_icon_2 from "../assets/selection-2.svg"
+import step_icon_3 from "../assets/selection-3.svg" 
+
+// exporting all icons
+export { service_icon_1, service_icon_2, service_icon_3, service_icon_4, company_1, company_2, company_3, company_4, company_5, destination_1, destination_2, destination_3, step_icon_1, step_icon_2, step_icon_3 }
