@@ -1,8 +1,8 @@
 import Banner from "../components/Banner"
-import Booking from "../components/Booking"
+import Booking from "../sections/BookingSection"
 import Company from "../components/Company"
-import DestinationSection from "../components/DestinationSection"
-import ServiceSection from "../components/ServiceSection"
+import DestinationSection from "../sections/DestinationSection"
+import ServiceSection from "../sections/ServiceSection"
 import Subscribe from "../components/Subscribe"
 import Testimonial from "../components/Testimonial"
 

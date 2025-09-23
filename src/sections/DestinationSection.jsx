@@ -1,28 +1,28 @@
 import { motion } from "framer-motion"
 import { destination_1, destination_2, destination_3 } from "../constant/constant"
-import SectionHeading from "./SectionHeading"
-import DestinationCard from "./DestinationCard"
+import SectionHeading from "../components/SectionHeading"
+import DestinationCard from "../components/DestinationCard"
 
 const destinationData = [
     {
         id: 1,
         image: destination_1,
         name: "Rome, Italy",
-        price: "$5,42k",
+        price: "5,42",
         trip: "10 Days Trip"
     },
     {
         id: 2,
         image: destination_2,
         name: "London, England",
-        price: "$12,42k",
+        price: "12,42",
         trip: "12 Days Trip"
     },
     {
         id: 3,
         image: destination_3,
         name: "Full Europe",
-        price: "$40k",
+        price: "40",
         trip: "28 Days Trip"
     }
 ]

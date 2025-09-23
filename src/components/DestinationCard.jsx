@@ -11,7 +11,7 @@ const DestinationCard = ({ destination }) => {
                 <div className="destination_text px-5 pb-7 flex-1">
                     <div className="flex items-start justify-between mb-3">
                         <h4 className="text-[20px] text-heading font-semibold font-opensans">{destination.name}</h4>
-                        <p className="text-paragraph text-base font-poppins">{destination.price}</p>
+                        <p className="text-paragraph text-base font-poppins">{`$${destination.price}k`}</p>
                     </div>
                     <div className="flex gap-2">
                         <img src="navigation.svg" alt="Trip" />

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { service_icon_1, service_icon_2, service_icon_3, service_icon_4 } from "../constant/constant"
-import ServiceCard from "./ServiceCard"
-import SectionHeading from "./SectionHeading"
+import ServiceCard from "../components/ServiceCard"
+import SectionHeading from "../components/SectionHeading"
 
 const servicesData = [
     {

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { step_icon_1, step_icon_2, step_icon_3 } from "../constant/constant"
-import SectionHeading from "./SectionHeading"
+import SectionHeading from "../components/SectionHeading"
 
 const steps = [
     {
@@ -8,21 +8,21 @@ const steps = [
         title: "Choose Destination",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.",
         icon: step_icon_1,
-        bgColor: "bg-yellow"
+        
     },
     {
         id: 2,
         title: "Make Payment",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.",
         icon: step_icon_2,
-        bgColor: "bg-[#F15A2B]"
+       
     },
     {
         id: 3,
         title: "Reach Airport on Selected Date",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.",
         icon: step_icon_3,
-        bgColor: "bg-[#006380]"
+       
     },
 ]
 
@@ -45,6 +45,7 @@ const stepVariants = {
 }
 
 const Booking = () => {
+
     return (
         <section className="mt-[186px]">
             <div className="container">
@@ -101,10 +102,21 @@ const Booking = () => {
 }
 
 const StepDesign = ({ step }) => {
+    const bgStyle = () => {
+        if (step.id === 1) {
+            return "bg-yellow"
+        }
+        if (step.id === 2) {
+            return "bg-orange"
+        }
+        if (step.id === 3) {
+            return "bg-[#006380]"
+        }
+    }
     return (
         <div className="step flex items-center gap-6">
             <div
-                className={`step_number flex items-center p-[13px] justify-center w-[47px] h-[47px] rounded-[13px] ${step.bgColor} text-white text-[30px] font-bold`}
+                className={`step_number flex items-center p-[13px] justify-center w-[47px] h-[47px] rounded-[13px] ${bgStyle()} text-white text-[30px] font-bold`}
             >
                 <img src={step.icon} alt="icon" />
             </div>
