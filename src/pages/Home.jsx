@@ -4,7 +4,7 @@ import Company from "../components/Company"
 import DestinationSection from "../sections/DestinationSection"
 import ServiceSection from "../sections/ServiceSection"
 import Subscribe from "../components/Subscribe"
-import Testimonial from "../components/Testimonial"
+import Testimonial from "../sections/TestimonialSection"
 
 
 const Home = () => {
