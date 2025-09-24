@@ -1,6 +1,8 @@
 import { motion } from "framer-motion"
 
 const Footer = () => {
+  const year = new Date().getFullYear()
+
   return (
     <footer className="mt-[96px]">
       <div className="container">
@@ -47,11 +49,11 @@ const Footer = () => {
               {["fb.svg", "insta.svg", "twit.svg"].map((icon, idx) => (
                 <motion.div
                   key={idx}
-                  className="cursor-pointer rounded-full w-[41px] h-[41px] shadow-3 flex items-center justify-center"
+                  className="cursor-pointer rounded-full w-[41px] h-[41px]  footer-icon-bg shadow-3 flex items-center justify-center"
                   whileHover={{ scale: 1.2, rotate: 10 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <img src={icon} alt="social icon" />
+                  <img src={icon}  alt="social icon" />
                 </motion.div>
               ))}
             </div>
@@ -77,7 +79,7 @@ const Footer = () => {
         </motion.div>
 
         <p className="font-poppins text-[14px] text-paragraph mt-[44px] mb-[80px] text-center">
-          All rights reserved@jadoo.co
+          All rights {year} reserved@jadoo.co
         </p>
       </div>
     </footer>

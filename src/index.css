@@ -77,6 +77,9 @@
   background: linear-gradient(201.65deg, #747DEF 10.27%, #5E3BE1 100%);
 }
 
+.footer-icon-bg:hover{
+  background:conic-gradient(from 180deg at 50% 50%,#8B02F1 0%,#F29BA4 17%,#C68BF0 29%,#D164DA 43%,#C963E8 61%,#BFC2E8 72%,#FFC99D 80%,#DD8B9C 88%,#BAD0F1 93%,#CED8C6 100%,#FFFFFF 100%)
+}
 
 }
 
