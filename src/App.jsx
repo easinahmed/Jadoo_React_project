@@ -6,36 +6,46 @@ import Error404Page from "./pages/error";
 import AuthLayout from "./layout/AuthLayout";
 import LogIn from "./pages/auth/LogIn";
 import SignUp from "./pages/auth/SignUp";
-
+import PublicRoute from "./route/PublicRoute";
+import ProtectedRoute from "./route/ProtectedRoute";
+import Destination from "./pages/Destination";
+import Hotels from "./pages/Hotels";
+import Flights from "./pages/Flights";
+import Booking from "./pages/Booking";
 
 const router = createBrowserRouter([
   {
     path: "/auth",
-    Component: AuthLayout,
+    Component: () => (
+      <PublicRoute>
+        <AuthLayout />
+      </PublicRoute>
+    ),
     children: [
-      {path: "login", Component: LogIn},
-      {path: "signup", Component: SignUp}
-      
-      
+      { path: "login", Component: LogIn },
+      { path: "signup", Component: SignUp }
     ]
   },
   {
     path: "/",
-    Component: MainLayout,
+    Component: () => (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
     children: [
-      { index: true, Component: Home},
-      
-      
+      { index: true, Component: Home },
+      { path: "/desitnations", Component: Destination },
+      { path: "/hotels", Component: Hotels },
+      { path: "/flights", Component: Flights },
+      { path: "/bookings", Component: Booking }
     ]
   },
-
-  {path: "*", Component:Error404Page}
+  { path: "*", Component: Error404Page }
 ]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router} />
-  )
-}
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;

@@ -183,11 +183,11 @@ export default function LogIn() {
                 {isSubmitting ? (
                   <div className="flex items-center">
                     <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
-                    Signing you in...
+                    Loging you in...
                   </div>
                 ) : (
                   <>
-                    Sign In to Jadoo
+                    Log In to Jadoo
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </>
                 )}

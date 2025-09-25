@@ -2,8 +2,13 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, Check } from 'lucide-react';
 import { Link } from 'react-router';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function SignUp() {
+
+    const {signUp} = useAuth();
+    
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -49,6 +54,7 @@ export default function SignUp() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        signUp(formData.email, formData.password)
 
         if (!validateForm()) {
             return;

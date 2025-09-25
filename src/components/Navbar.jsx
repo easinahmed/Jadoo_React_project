@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Logo from "../../public/Logo.svg";
+
 
 const Navbar = () => {
   const navbar = useRef(null);
@@ -73,7 +73,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="font-medium text-[17px] text-heading" to={"/booking"}>
+                <Link className="font-medium text-[17px] text-heading" to={"/bookings"}>
                   Bookings
                 </Link>
               </li>
@@ -81,14 +81,14 @@ const Navbar = () => {
           </div>
 
           <Link to="/" className="btn btn-ghost text-xl">
-            <img src={Logo} alt="Logo" />
+            <img src="../../public/Logo.svg" alt="Logo" />
           </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal gap-[55px] px-1">
-            {["desitnations", "hotels", "flights", "booking"].map((item, idx) => (
+            {["desitnations", "hotels", "flights", "bookings"].map((item, idx) => (
               <li key={idx}>
                 <Link className="font-medium text-[17px] text-heading" to={`/${item}`}>
                   {item.charAt(0).toUpperCase() + item.slice(1)}
