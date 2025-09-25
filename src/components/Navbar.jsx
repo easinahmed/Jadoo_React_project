@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Logo from "../../public/Logo.svg";
 
 const Navbar = () => {
   const navbar = useRef(null);
@@ -21,7 +22,7 @@ const Navbar = () => {
       className={`fixed w-full z-10 py-12`}
       ref={navbar}
       animate={{
-        backgroundColor: scrolled ? "#ffffff" : "transparent",
+        backgroundColor: scrolled ? "#ffffff" : "none",
         boxShadow: scrolled
           ? "0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -4px rgba(0,0,0,0.1)"
           : "0 0px 0px rgba(0,0,0,0)",
@@ -80,7 +81,7 @@ const Navbar = () => {
           </div>
 
           <Link to="/" className="btn btn-ghost text-xl">
-            <img src="Logo.svg" alt="Logo" />
+            <img src={Logo} alt="Logo" />
           </Link>
         </div>
 
@@ -100,13 +101,13 @@ const Navbar = () => {
         {/* Navbar End */}
         <div className="navbar-end ml-[60px] gap-[30px] flex items-center">
           <Link
-            to={"/login"}
+            to={"/auth/login"}
             className="btn font-medium text-[17px] bg-transparent border-[1px] border-transparent hover:border hover:rounded-[5px] py-[9px] px-[21px] hover:border-black"
           >
             Login
           </Link>
           <Link
-            to={"/signup"}
+            to={"/auth/signup"}
             className="btn font-medium text-[17px] bg-transparent border-[1px] border-transparent hover:border hover:rounded-[5px] py-[9px] px-[21px] hover:border-black"
           >
             Sign up
