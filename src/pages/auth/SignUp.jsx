@@ -56,9 +56,7 @@ export default function SignUp() {
         e.preventDefault();
         signUp(formData.email, formData.password)
 
-        if (!validateForm()) {
-            return;
-        }
+       
 
         setIsSubmitting(true);
 
