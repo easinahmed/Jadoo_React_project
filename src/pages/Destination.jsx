@@ -4,7 +4,7 @@ import {
   Clock, Globe, Mountain, Waves
 } from 'lucide-react';
 
-import { destination_1, destination_2, destination_3 } from '../constant/constant';
+import { bali, destination_1, destination_2, destination_3, paris, swiss, tokyo } from '../constant/constant';
 
 const Destination = () => {
   // 🔹 Hooks সবসময় উপরে থাকবে
@@ -39,7 +39,7 @@ const Destination = () => {
       name: 'Paris, France',
       region: 'europe',
       category: 'city',
-      image: destination_1,
+      image: paris,
       rating: 4.8,
       reviews: 2847,
       price: 1200,
@@ -54,7 +54,7 @@ const Destination = () => {
       name: 'Bali, Indonesia',
       region: 'asia',
       category: 'beach',
-      image: destination_2,
+      image: bali,
       rating: 4.7,
       reviews: 1923,
       price: 800,
@@ -69,7 +69,7 @@ const Destination = () => {
       name: 'Swiss Alps, Switzerland',
       region: 'europe',
       category: 'mountain',
-      image: destination_3,
+      image: swiss,
       rating: 4.9,
       reviews: 1534,
       price: 1800,
@@ -84,7 +84,7 @@ const Destination = () => {
       name: 'Tokyo, Japan',
       region: 'asia',
       category: 'city',
-      image: destination_1,
+      image: tokyo,
       rating: 4.6,
       reviews: 3241,
       price: 1400,
