@@ -1,10 +1,13 @@
 import { Link } from "react-router";
+import { AiOutlineLogout } from "react-icons/ai";
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import {useAuth} from "../hooks/useAuth"
 
 
 const Navbar = () => {
   const navbar = useRef(null);
+  const { currentUser, logout } = useAuth()
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -100,26 +103,50 @@ const Navbar = () => {
 
         {/* Navbar End */}
         <div className="navbar-end ml-[60px] gap-[30px] flex items-center">
-          <Link
-            to={"/auth/login"}
-            className="btn font-medium text-[17px] bg-transparent border-[1px] border-transparent hover:border hover:rounded-[5px] py-[9px] px-[21px] hover:border-black"
-          >
-            Login
-          </Link>
-          <Link
-            to={"/auth/signup"}
-            className="btn font-medium text-[17px] bg-transparent border-[1px] border-transparent hover:border hover:rounded-[5px] py-[9px] px-[21px] hover:border-black"
-          >
-            Sign up
-          </Link>
-          <select
-            defaultValue="EN"
-            className="bg-transparent cursor-pointer select select-neutral w-16 border-0"
-          >
-            <option>EN</option>
-            <option>BN</option>
-            <option>AR</option>
-          </select>
+          {!currentUser ? (
+            <>
+              <Link
+                to={"/auth/login"}
+                className="btn bg-transparent border-[1px] border-transparent hover:border hover:border-black"
+              >
+                Login
+              </Link>
+              <Link
+                to={"/auth/signup"}
+                className="btn bg-transparent border-[1px] border-transparent hover:border hover:border-black"
+              >
+                Sign up
+              </Link>
+              <select
+                defaultValue="Server location"
+                className="bg-transparent select select-neutral w-16 border-0"
+              >
+                <option>EN</option>
+                <option>BN</option>
+              </select>
+            </>
+          ) : (
+            <>
+
+              <div className="dropdown cursor-pointer dropdown-end">
+                <div tabIndex={0} className=" m-1">
+                  <div className="avatar ml-3">
+                    <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
+                      <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+                    </div>
+                  </div>
+                </div>
+                <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm">
+                  <div className="flex items-center gap-2 cursor-pointer" onClick={logout}>
+                    <button >
+                      <AiOutlineLogout className="text-red-500" />
+                    </button>
+                    <span>Logout</span>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </motion.nav>
