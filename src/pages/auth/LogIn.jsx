@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Globe, Plane, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function LogIn() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     rememberMe: false
-  });
+  });  
+
+  const {login} =useAuth()
   
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+ 
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -24,43 +24,20 @@ export default function LogIn() {
       [name]: type === 'checkbox' ? checked : value
     }));
     
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
+    
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    login(formData.email, formData.password)
     
-    if (!validateForm()) {
-      return;
-    }
+    
 
     setIsSubmitting(true);
     
     setTimeout(() => {
-      console.log('Sign in data:', formData);
-      alert('Welcome back to Jadoo! You have been signed in successfully.');
       setIsSubmitting(false);
     }, 1500);
   };
@@ -118,13 +95,11 @@ export default function LogIn() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full pl-12 pr-4 py-4 border-2 ${errors.email ? 'border-red-300 focus:border-red-500' : 'border-gray-200 focus:border-orange-500'} rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-0 transition-all duration-200 text-lg`}
+                    className={`w-full pl-12 pr-4 py-4 border-2 border-gray-200 focus:border-orange-500 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-0 transition-all duration-200 text-lg`}
                     placeholder="Enter your email"
                   />
                 </div>
-                {errors.email && (
-                  <p className="mt-2 text-sm text-red-600">{errors.email}</p>
-                )}
+             
               </div>
 
               {/* Password field */}
@@ -139,7 +114,7 @@ export default function LogIn() {
                     name="password"
                     value={formData.password}
                     onChange={handleInputChange}
-                    className={`w-full pl-12 pr-12 py-4 border-2 ${errors.password ? 'border-red-300 focus:border-red-500' : 'border-gray-200 focus:border-orange-500'} rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-0 transition-all duration-200 text-lg`}
+                    className={`w-full pl-12 pr-12 py-4 border-2 border-gray-200 focus:border-orange-500 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-0 transition-all duration-200 text-lg`}
                     placeholder="Enter your password"
                   />
                   <button
@@ -150,9 +125,7 @@ export default function LogIn() {
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
-                {errors.password && (
-                  <p className="mt-2 text-sm text-red-600">{errors.password}</p>
-                )}
+                
               </div>
 
               {/* Remember me and forgot password */}
