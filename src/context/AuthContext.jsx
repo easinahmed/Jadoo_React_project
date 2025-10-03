@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase/firebase.config";
 
@@ -31,9 +31,27 @@ const AuthProvider = ({ children }) => {
 
     const [currentUser, setCurrentUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    const signUp = (email, password) => {
+    const signUp = (email, password, navigate) => {
 
         createUserWithEmailAndPassword(auth, email, password)
+        .then(()=>{
+            
+
+            sendEmailVerification(auth.currentUser)
+            .then(() => {
+                if(navigate) {
+                    return navigate("/auth/login")
+                }
+                alert("Verification Mail Sent. Plz check your mail.")
+                // Email verification sent!
+                // ...
+            }).catch((err)=>{
+                console.log("Verification Failed");
+                
+            })
+            
+        }
+        )
 
     }
 

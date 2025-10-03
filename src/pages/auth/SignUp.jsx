@@ -1,12 +1,13 @@
 
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, Check } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../../hooks/useAuth';
 
 export default function SignUp() {
 
     const {signUp} = useAuth();
+    const navigate = useNavigate()
     
 
     const [formData, setFormData] = useState({
@@ -54,7 +55,8 @@ export default function SignUp() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        signUp(formData.email, formData.password)
+        signUp(formData.email, formData.password, navigate)
+
 
        
 
@@ -62,7 +64,6 @@ export default function SignUp() {
 
         setTimeout(() => {
             console.log('Sign up data:', formData);
-            alert('Welcome to Jadoo! Your account has been created successfully.');
             setIsSubmitting(false);
             setFormData({
                 firstName: '',

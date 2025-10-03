@@ -84,7 +84,7 @@ const Navbar = () => {
           </div>
 
           <Link to="/" className="btn btn-ghost text-xl">
-            <img src="../../public/Logo.svg" alt="Logo" />
+            <img src="/Logo.svg" alt="Logo" />
           </Link>
         </div>
 
@@ -103,50 +103,61 @@ const Navbar = () => {
 
         {/* Navbar End */}
         <div className="navbar-end ml-[60px] gap-[30px] flex items-center">
-          {!currentUser ? (
-            <>
-              <Link
-                to={"/auth/login"}
-                className="btn bg-transparent border-[1px] border-transparent hover:border hover:border-black"
-              >
-                Login
-              </Link>
-              <Link
-                to={"/auth/signup"}
-                className="btn bg-transparent border-[1px] border-transparent hover:border hover:border-black"
-              >
-                Sign up
-              </Link>
-              <select
-                defaultValue="Server location"
-                className="bg-transparent select select-neutral w-16 border-0"
-              >
-                <option>EN</option>
-                <option>BN</option>
-              </select>
-            </>
-          ) : (
-            <>
+         {!currentUser ? (
+  // No user → Show Login + Signup
+  <>
+    <Link
+      to={"/auth/login"}
+      className="btn bg-transparent border-[1px] border-transparent hover:border hover:border-black"
+    >
+      Login
+    </Link>
+    <Link
+      to={"/auth/signup"}
+      className="btn bg-transparent border-[1px] border-transparent hover:border hover:border-black"
+    >
+      Sign up
+    </Link>
+    <select
+      defaultValue="Server location"
+      className="bg-transparent select select-neutral w-16 border-0"
+    >
+      <option>EN</option>
+      <option>BN</option>
+    </select>
+  </>
+) : currentUser.emailVerified ? (
+  // User exists + verified → Show Avatar + Logout
+  <>
+    <div className="dropdown cursor-pointer dropdown-end">
+      <div tabIndex={0} className="m-1">
+        <div className="avatar ml-3">
+          <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
+            <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+          </div>
+        </div>
+      </div>
+      <div
+        tabIndex={0}
+        className="dropdown-content menu bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm"
+      >
+        <div
+          className="flex items-center gap-2 cursor-pointer"
+          onClick={logout}
+        >
+          <button>
+            <AiOutlineLogout className="text-red-500" />
+          </button>
+          <span>Logout</span>
+        </div>
+      </div>
+    </div>
+  </>
+) : (
+  // User exists but not verified → maybe force verify message
+  <span className="text-sm text-red-500">Please verify your email</span>
+)}
 
-              <div className="dropdown cursor-pointer dropdown-end">
-                <div tabIndex={0} className=" m-1">
-                  <div className="avatar ml-3">
-                    <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
-                      <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
-                    </div>
-                  </div>
-                </div>
-                <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm">
-                  <div className="flex items-center gap-2 cursor-pointer" onClick={logout}>
-                    <button >
-                      <AiOutlineLogout className="text-red-500" />
-                    </button>
-                    <span>Logout</span>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
         </div>
       </div>
     </motion.nav>
