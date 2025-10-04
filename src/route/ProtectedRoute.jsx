@@ -3,11 +3,10 @@ import { useAuth } from "../hooks/useAuth";
 
 const ProtectedRoute = ({ children }) => {
   const location = useLocation();
-  const { currentUser, loading } = useAuth();
+  const { currentUser} = useAuth();
 
  
-
-  if (!currentUser ) {
+   if (!currentUser ) {
     return (
       <Navigate to="/auth/login" state={{ from: location }} replace />
     );

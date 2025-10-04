@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Globe, Plane, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import { useAuth } from '../../hooks/useAuth';
+import { FaGithub } from 'react-icons/fa';
 
 export default function LogIn() {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ export default function LogIn() {
     rememberMe: false
   });  
 
-  const {login} =useAuth()
+  const {login, googleLogin, fbLogin, githubLogin} =useAuth()
   
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,10 +43,7 @@ export default function LogIn() {
     }, 1500);
   };
 
-  const handleSocialLogin = (provider) => {
-    console.log(`Login with ${provider}`);
-    alert(`${provider} login integration would go here`);
-  };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 pt-30 via-orange-50 to-pink-50 relative overflow-hidden">
@@ -180,7 +178,7 @@ export default function LogIn() {
               <div className="grid grid-cols-2 gap-4">
                 <button
                   type="button"
-                  onClick={() => handleSocialLogin('Google')}
+                  onClick={googleLogin}
                   className="flex !cursor-pointer items-center justify-center px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 group"
                 >
                   <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
@@ -194,13 +192,23 @@ export default function LogIn() {
 
                 <button
                   type="button"
-                  onClick={() => handleSocialLogin('Facebook')}
+                  onClick={fbLogin}
                   className="flex  items-center justify-center !cursor-pointer px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 group"
                 >
                   <svg className="w-5 h-5 mr-2" fill="#1877F2" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                   <span className="text-sm font-medium text-gray-700">Facebook</span>
+                </button>
+
+
+                <button
+                  type="button"
+                  onClick={githubLogin}
+                  className="flex  items-center gap-2 justify-center !cursor-pointer px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 group"
+                >
+                  <FaGithub/>
+                  <span className="text-sm font-medium text-gray-700">Github</span>
                 </button>
               </div>
             </div>
