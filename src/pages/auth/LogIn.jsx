@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Globe, Plane, MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import { useAuth } from '../../hooks/useAuth';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaUser } from 'react-icons/fa';
 
 export default function LogIn() {
   const [formData, setFormData] = useState({
@@ -11,7 +11,7 @@ export default function LogIn() {
     rememberMe: false
   });  
 
-  const {login, googleLogin, fbLogin, githubLogin} =useAuth()
+  const {login, googleLogin, fbLogin, githubLogin, anonymousLogin} =useAuth()
   
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -209,6 +209,15 @@ export default function LogIn() {
                 >
                   <FaGithub/>
                   <span className="text-sm font-medium text-gray-700">Github</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={anonymousLogin}
+                  className="flex  items-center gap-2 justify-center !cursor-pointer px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 group"
+                >
+                  <FaUser/>
+                  <span className="text-sm font-medium text-gray-700">Guest User</span>
                 </button>
               </div>
             </div>

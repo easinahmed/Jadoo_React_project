@@ -10,7 +10,7 @@ const PublicRoute = ({children}) => {
     return <Loading/>
   }
 
-    if (currentUser && currentUser.emailVerified) {
+    if (currentUser && currentUser?.emailVerified) {
         return(
             <Navigate to={"/"} state={{from: location}} replace />
         )

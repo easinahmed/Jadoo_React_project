@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider, signInAnonymously } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase/firebase.config";
 
@@ -10,8 +10,9 @@ export const AuthContext = createContext(
         logout: () => { },
         login: () => { },
         googleLogin: () => { },
-        fbLogin : () => {},
-        githubLogin: () => {}
+        fbLogin: () => { },
+        githubLogin: () => { },
+        anonymousLogin: () => {}
     }
 );
 
@@ -97,54 +98,67 @@ const AuthProvider = ({ children }) => {
 
 
     const fbLogin = () => {
-    const fbProvider = new FacebookAuthProvider();
+        const fbProvider = new FacebookAuthProvider();
 
-    signInWithPopup(auth, fbProvider)
-        .then((result) => {
-            // Signed-in user info
-            const user = result.user;
+        signInWithPopup(auth, fbProvider)
+            .then((result) => {
+                // Signed-in user info
+                const user = result.user;
 
-            // Facebook Access Token
-            const credential = FacebookAuthProvider.credentialFromResult(result);
-            const accessToken = credential ? credential.accessToken : null;
+                // Facebook Access Token
+                const credential = FacebookAuthProvider.credentialFromResult(result);
+                const accessToken = credential ? credential.accessToken : null;
 
-            console.log("Facebook user:", user);
-            console.log("Facebook accessToken:", accessToken);
+                console.log("Facebook user:", user);
+                console.log("Facebook accessToken:", accessToken);
 
-            // এখানে তুমি চাইলে user কে redirect করতে পারো
-        })
-        .catch((error) => {
-            // Error handling
-            console.log("Error code:", error.code);
-            console.log("Error message:", error.message);
-            console.log("Email:", error.email);
-            console.log("Credential:", FacebookAuthProvider.credentialFromError(error));
-        });
-}
+                // এখানে তুমি চাইলে user কে redirect করতে পারো
+            })
+            .catch((error) => {
+                // Error handling
+                console.log("Error code:", error.code);
+                console.log("Error message:", error.message);
+                console.log("Email:", error.email);
+                console.log("Credential:", FacebookAuthProvider.credentialFromError(error));
+            });
+    }
 
-const githubLogin = ( ) => {
-    const githubProvider = new GithubAuthProvider()
-    signInWithPopup(auth, githubProvider)
-  .then((result) => {
-    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-    const credential = GithubAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
+    const githubLogin = () => {
+        const githubProvider = new GithubAuthProvider()
+        signInWithPopup(auth, githubProvider)
+            .then((result) => {
+                // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+                const credential = GithubAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
 
-    // The signed-in user info.
-    const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GithubAuthProvider.credentialFromError(error);
+                // ...
+            });
+    }
+
+
+    const anonymousLogin = () => {
+        signInAnonymously(auth)
+  .then(() => {
+    // Signed in..
+  })
+  .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GithubAuthProvider.credentialFromError(error);
     // ...
   });
-}
+    }
 
 
     const logout = () => {
@@ -161,7 +175,8 @@ const githubLogin = ( ) => {
         login,
         googleLogin,
         fbLogin,
-        githubLogin
+        githubLogin,
+        anonymousLogin
 
     }
     return (
