@@ -10,6 +10,18 @@ const PublicRoute = ({children}) => {
     return <Loading/>
   }
 
+  if (
+        currentUser?.providerData[0]?.providerId === "github.com" || 
+        currentUser?.providerData[0]?.providerId === "facebook.com" ||
+        currentUser?.isAnonymous
+
+    ) {
+        return (
+
+            <Navigate to={"/"} state={{from: location}} replace />
+        )
+    }
+
     if (currentUser && currentUser?.emailVerified) {
         return(
             <Navigate to={"/"} state={{from: location}} replace />

@@ -12,7 +12,8 @@ export const AuthContext = createContext(
         googleLogin: () => { },
         fbLogin: () => { },
         githubLogin: () => { },
-        anonymousLogin: () => {}
+        anonymousLogin: () => { },
+        getUserInfo: () => { },
     }
 );
 
@@ -124,8 +125,8 @@ const AuthProvider = ({ children }) => {
     }
 
     const githubLogin = () => {
-        const githubProvider = new GithubAuthProvider()
-        signInWithPopup(auth, githubProvider)
+        const provider = new GithubAuthProvider()
+        signInWithPopup(auth, provider)
             .then((result) => {
                 // This gives you a GitHub Access Token. You can use it to access the GitHub API.
                 const credential = GithubAuthProvider.credentialFromResult(result);
@@ -150,14 +151,29 @@ const AuthProvider = ({ children }) => {
 
     const anonymousLogin = () => {
         signInAnonymously(auth)
-  .then(() => {
-    // Signed in..
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ...
-  });
+            .then(() => {
+                // Signed in..
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ...
+            });
+    }
+
+    const getUserInfo = () => {
+        const user = auth.currentUser;
+        if (user !== null) {
+            // The user object has basic properties such as display name, email, etc.
+            const email = user.email;
+            const displayName = user.displayName = email.slice(0, 1);
+            const photoURL = user.photoURL;
+            const emailVerified = user.emailVerified;
+            const uid = user.uid;
+
+
+
+        }
     }
 
 
@@ -176,7 +192,8 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         fbLogin,
         githubLogin,
-        anonymousLogin
+        anonymousLogin,
+        getUserInfo
 
     }
     return (
