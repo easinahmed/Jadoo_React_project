@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider, signInAnonymously, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider, signInAnonymously, updateProfile, updatePassword } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase/firebase.config";
 
@@ -14,7 +14,8 @@ export const AuthContext = createContext(
         githubLogin: () => { },
         anonymousLogin: () => { },
         getUserInfo: () => { },
-        updateUserInfo: () => {}
+        updateUserInfo: () => { },
+        updateUserPass: () => { },
     }
 );
 
@@ -178,15 +179,27 @@ const AuthProvider = ({ children }) => {
     }
 
 
-        const updateUserInfo = (name, photo) => {
+    const updateUserInfo = (name, photo) => {
         updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         }).then(() => {
             console.log("user update done");
-            
+
         }).catch((error) => {
             console.log(error.message);
-            
+
+        });
+    }
+
+    const updateUserPass = () => {
+        const user = auth.currentUser;
+        const newPassword = getASecureRandomPassword();
+
+        updatePassword(user, newPassword).then(() => {
+            // Update successful.
+        }).catch((error) => {
+            // An error ocurred
+            // ...
         });
     }
 
@@ -208,7 +221,8 @@ const AuthProvider = ({ children }) => {
         githubLogin,
         anonymousLogin,
         getUserInfo,
-        updateUserInfo
+        updateUserInfo,
+        updateUserPass
 
     }
     return (
