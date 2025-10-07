@@ -12,6 +12,7 @@ import Destination from "./pages/Destination";
 import Hotels from "./pages/Hotels";
 import Flights from "./pages/Flights";
 import Booking from "./pages/Booking";
+import ProfilePage from "./pages/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,8 @@ const router = createBrowserRouter([
       { path: "/desitnations", Component: Destination },
       { path: "/hotels", Component: Hotels },
       { path: "/flights", Component: Flights },
-      { path: "/bookings", Component: Booking }
+      { path: "/bookings", Component: Booking },
+      { path: "/profile", Component:ProfilePage  },
     ]
   },
   { path: "*", Component: Error404Page }

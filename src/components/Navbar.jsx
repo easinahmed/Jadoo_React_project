@@ -176,7 +176,7 @@ const Navbar = () => {
                     </div>
                   </div>
                   <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm">
-                    <Link to={"/profile"} className="flex items-center gap-2 cursor-pointer" >
+                    <Link to={"/profile"}  className="flex items-center gap-2 cursor-pointer" >
                       <button >
                         <FaUser className="text-red-500" />
                       </button>
