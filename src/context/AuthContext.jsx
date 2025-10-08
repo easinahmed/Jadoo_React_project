@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider, signInAnonymously, updateProfile, updatePassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider, signInAnonymously, updateProfile, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase/firebase.config";
 
@@ -191,17 +191,33 @@ const AuthProvider = ({ children }) => {
         });
     }
 
-    const updateUserPass = () => {
-        const user = auth.currentUser;
-        const newPassword = getASecureRandomPassword();
+    const updateUserPass = (newPassword, currentPassword) => {
+    const user = auth.currentUser;
 
-        updatePassword(user, newPassword).then(() => {
-            // Update successful.
-        }).catch((error) => {
-            // An error ocurred
-            // ...
-        });
+    if (!user) {
+        alert("No user logged in!");
+        return;
     }
+
+    // ইউজারের current email & password দিয়ে reauthenticate
+    const credential = EmailAuthProvider.credential(user.email, currentPassword);
+
+    reauthenticateWithCredential(user, credential)
+        .then(() => {
+            // reauthentication successful
+            updatePassword(user, newPassword)
+                .then(() => {
+                    alert("✅ Password updated successfully!");
+                })
+                .catch((error) => {
+                    alert("Failed to update password: " + error.message);
+                });
+        })
+        .catch((error) => {
+            alert("Reauthentication failed: " + error.message);
+        });
+};
+
 
 
     const logout = () => {

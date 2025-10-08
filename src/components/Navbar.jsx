@@ -3,7 +3,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "../hooks/useAuth"
-import { FaUser } from "react-icons/fa";
+import { FaKey, FaUser } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -161,7 +161,7 @@ const Navbar = () => {
               }
 
               {
-                !isLogin && <div className="dropdown dropdown-end">
+                !isLogin && <div className="dropdown cursor-pointer dropdown-end">
                   <div tabIndex={0} className=" m-1">
                     <div className="avatar ml-3">
                       <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
@@ -182,12 +182,19 @@ const Navbar = () => {
                       </button>
                       <span>Profile</span>
                     </Link>
-                    <div className="flex items-center gap-2 cursor-pointer" onClick={logout}>
+                    <div className="flex items-center gap-2 mt-2 cursor-pointer" onClick={logout}>
                       <button >
                         <AiOutlineLogout className="text-red-500" />
                       </button>
                       <span>Logout</span>
                     </div>
+
+                    <Link to={"/password"} className="flex items-center gap-2 mt-2 cursor-pointer">
+                      <button >
+                        <FaKey className="text-red-500" />
+                      </button>
+                      <span>Change Password</span>
+                    </Link>
                   </div>
                 </div>
               }

@@ -13,6 +13,7 @@ import Hotels from "./pages/Hotels";
 import Flights from "./pages/Flights";
 import Booking from "./pages/Booking";
 import ProfilePage from "./pages/ProfilePage";
+import Password from "./pages/Password";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
       { path: "/flights", Component: Flights },
       { path: "/bookings", Component: Booking },
       { path: "/profile", Component:ProfilePage  },
+      { path: "/password", Component:Password  },
     ]
   },
   { path: "*", Component: Error404Page }
