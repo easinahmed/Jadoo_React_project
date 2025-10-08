@@ -3,11 +3,10 @@ import { FaUser, FaLock, FaImage, FaSave } from "react-icons/fa";
 import { useAuth } from "../hooks/useAuth";
 
 const ProfilePage = () => {
-  const { currentUser, updateUserInfo, updateUserPass } = useAuth();
+  const { currentUser, updateUserInfo } = useAuth();
 
   const [name, setName] = useState(currentUser?.displayName || "");
   const [photoURL, setPhotoURL] = useState(currentUser?.photoURL || "");
-  const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSave = (e) => {
@@ -20,12 +19,11 @@ const ProfilePage = () => {
       setMessage("✅ Profile updated successfully!");
     }
 
-    // ✅ Update password (only if user entered something)
-    if (password) {
-      updateUserPass(password);
-      setMessage("✅ Password updated successfully!");
-    }
+  
   };
+
+  console.log(currentUser);
+  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
@@ -52,22 +50,7 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          {/* Password */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              New Password
-            </label>
-            <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-orange-500">
-              <FaLock className="text-gray-400 mr-2" size={18} />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter new password"
-                className="w-full outline-none text-gray-700"
-              />
-            </div>
-          </div>
+       
 
           {/* Photo URL */}
           <div>
