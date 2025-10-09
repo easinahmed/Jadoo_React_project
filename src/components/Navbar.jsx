@@ -119,13 +119,17 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
-                <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm">
-                  <Link to={"/profile"} className="flex items-center gap-2 cursor-pointer" >
-                    <button >
-                      <FaUser className="text-red-500" />
-                    </button>
-                    <span>Profile</span>
-                  </Link>
+
+
+
+                <div tabIndex={0} className="dropdown-content font-poppins flex gap-3  menu bg-base-100 rounded-box z-1 w-40 p-3 shadow-sm">
+
+                  <div className="flex flex-col gap-2 ">
+                    <p className="text-base">Welcome! <span className="text-orange">{currentUser.displayName}</span></p>
+                    <p>Email: <span className="text-orange">{currentUser.email}</span></p>
+                  </div>
+
+
                   <div className="flex items-center gap-2 cursor-pointer" onClick={logout}>
                     <button >
                       <AiOutlineLogout className="text-red-500" />
@@ -161,11 +165,12 @@ const Navbar = () => {
               }
 
               {
-                !isLogin && <div className="dropdown cursor-pointer dropdown-end">
+                !isLogin && <div className="dropdown cursor-pointer  dropdown-end">
+
                   <div tabIndex={0} className=" m-1">
                     <div className="avatar ml-3">
                       <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
-                        
+
                         {currentUser.photoURL ?
                           <img src={currentUser.photoURL} alt="avatar" />
                           :
@@ -175,21 +180,28 @@ const Navbar = () => {
                       </div>
                     </div>
                   </div>
-                  <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-40 p-2 shadow-sm">
-                    <Link to={"/profile"}  className="flex items-center gap-2 cursor-pointer" >
+
+                  <div tabIndex={0} className="dropdown-content font-poppins flex gap-3 menu bg-base-100 rounded-box z-1 w-60 p-3 shadow-sm">
+
+                    <div className="flex flex-col gap-2 ">
+                      <p className="text-base">Welcome! <span className="text-orange">{currentUser.displayName}</span></p>
+                      <p>Email: <span className="text-orange">{currentUser.email}</span></p>
+                    </div>
+
+                    <Link to={"/profile"} className="flex items-center gap-2 cursor-pointer" >
                       <button >
                         <FaUser className="text-red-500" />
                       </button>
-                      <span>Profile</span>
+                      <span> Profile</span>
                     </Link>
-                    <div className="flex items-center gap-2 mt-2 cursor-pointer" onClick={logout}>
+                    <div className="flex items-center gap-2  cursor-pointer" onClick={logout}>
                       <button >
                         <AiOutlineLogout className="text-red-500" />
                       </button>
                       <span>Logout</span>
                     </div>
 
-                    <Link to={"/password"} className="flex items-center gap-2 mt-2 cursor-pointer">
+                    <Link to={"/password"} className="flex items-center gap-2  cursor-pointer">
                       <button >
                         <FaKey className="text-red-500" />
                       </button>

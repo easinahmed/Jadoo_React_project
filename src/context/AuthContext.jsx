@@ -16,7 +16,7 @@ export const AuthContext = createContext(
         getUserInfo: () => { },
         updateUserInfo: () => { },
         updateUserPass: () => { },
-        resetPass: () => {},
+        resetPass: () => { },
     }
 );
 
@@ -165,19 +165,32 @@ const AuthProvider = ({ children }) => {
     }
 
     const getUserInfo = () => {
-        const user = auth.currentUser;
-        if (user !== null) {
-            // The user object has basic properties such as display name, email, etc.
-            const email = user.email;
-            const displayName = user.displayName = email.slice(0, 1);
-            const photoURL = user.photoURL;
-            const emailVerified = user.emailVerified;
-            const uid = user.uid;
+  const user = auth.currentUser;
+  if (user) {
+    const { email, displayName, photoURL, emailVerified, uid } = user;
 
-
-
-        }
+    if (!displayName && email) {
+      const newName = email.split("@")[0];
+      updateProfile(user, { displayName: newName })
+        .then(() => {
+          console.log("Display name updated to:", newName);
+        })
+        .catch((error) => {
+          console.error("Error updating profile:", error);
+        });
     }
+
+    console.log({
+      email,
+      displayName: user.displayName,
+      photoURL,
+      emailVerified,
+      uid,
+    });
+  } else {
+    console.log("No user is signed in.");
+  }
+};
 
 
     const updateUserInfo = (name, photo) => {
@@ -193,46 +206,46 @@ const AuthProvider = ({ children }) => {
     }
 
     const updateUserPass = (newPassword, currentPassword) => {
-    const user = auth.currentUser;
+        const user = auth.currentUser;
 
-    if (!user) {
-        alert("No user logged in!");
-        return;
+        if (!user) {
+            alert("No user logged in!");
+            return;
+        }
+
+        // ইউজারের current email & password দিয়ে reauthenticate
+        const credential = EmailAuthProvider.credential(user.email, currentPassword);
+
+        reauthenticateWithCredential(user, credential)
+            .then(() => {
+                // reauthentication successful
+                updatePassword(user, newPassword)
+                    .then(() => {
+                        alert("✅ Password updated successfully!");
+                    })
+                    .catch((error) => {
+                        alert("Failed to update password: " + error.message);
+                    });
+            })
+            .catch((error) => {
+                alert("Reauthentication failed: " + error.message);
+            });
+    };
+
+
+    const resetPass = (email) => {
+
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert("Password reset email sent!")
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+
+                // ..
+            });
     }
-
-    // ইউজারের current email & password দিয়ে reauthenticate
-    const credential = EmailAuthProvider.credential(user.email, currentPassword);
-
-    reauthenticateWithCredential(user, credential)
-        .then(() => {
-            // reauthentication successful
-            updatePassword(user, newPassword)
-                .then(() => {
-                    alert("✅ Password updated successfully!");
-                })
-                .catch((error) => {
-                    alert("Failed to update password: " + error.message);
-                });
-        })
-        .catch((error) => {
-            alert("Reauthentication failed: " + error.message);
-        });
-};
-
-
-const resetPass = (email) => {
-
-sendPasswordResetEmail(auth, email)
-  .then(() => {
-    alert("Password reset email sent!")
-  })
-  .catch((error) => {
-    const errorMessage = error.message;
-    console.log(errorMessage);
-    
-    // ..
-  });
-}
 
 
 

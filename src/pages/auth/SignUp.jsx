@@ -200,7 +200,7 @@ export default function SignUp() {
                                             onChange={handleInputChange}
                                             className={`w-full pl-12 pr-4 py-3 border-2 ${errors.country ? 'border-red-300 focus:border-red-500' : 'border-gray-200 focus:border-orange-500'} rounded-xl text-gray-900 focus:outline-none focus:ring-0 transition-colors duration-200 appearance-none bg-white`}
                                         >
-                                            <option value="">Select your country</option>
+                                            <option disabled value="">Select your country</option>
                                             {countries.map((country) => (
                                                 <option key={country} value={country}>
                                                     {country}
