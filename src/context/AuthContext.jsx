@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider, signInAnonymously, updateProfile, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, GithubAuthProvider, signInAnonymously, updateProfile, updatePassword, EmailAuthProvider, reauthenticateWithCredential, sendPasswordResetEmail } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase/firebase.config";
 
@@ -16,6 +16,7 @@ export const AuthContext = createContext(
         getUserInfo: () => { },
         updateUserInfo: () => { },
         updateUserPass: () => { },
+        resetPass: () => {},
     }
 );
 
@@ -219,6 +220,21 @@ const AuthProvider = ({ children }) => {
 };
 
 
+const resetPass = (email) => {
+
+sendPasswordResetEmail(auth, email)
+  .then(() => {
+    alert("Password reset email sent!")
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    console.log(errorMessage);
+    
+    // ..
+  });
+}
+
+
 
     const logout = () => {
         signOut(auth)
@@ -238,7 +254,8 @@ const AuthProvider = ({ children }) => {
         anonymousLogin,
         getUserInfo,
         updateUserInfo,
-        updateUserPass
+        updateUserPass,
+        resetPass
 
     }
     return (
