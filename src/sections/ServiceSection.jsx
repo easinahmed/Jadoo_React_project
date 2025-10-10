@@ -7,7 +7,7 @@ const servicesData = [
     {
         id: 1,
         icon: service_icon_1,
-        title: "Calculate Weather",
+        title: " Weather",
         description: "Built Wicket longer admire do barton vanity itself do in it."
     },
     {
@@ -64,7 +64,7 @@ const ServiceSection = () => {
 
                 {/* Cards with stagger animation */}
                 <motion.div
-                    className="grid justify-between grid-cols-4 gap-6"
+                    className="grid justify-between grid-cols-4 gap-4"
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="show"
